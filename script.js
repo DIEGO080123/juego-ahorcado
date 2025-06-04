@@ -1,4 +1,3 @@
-
 const palabras = [
   { palabra: "inocuidad", pista: "Condición que garantiza que un alimento no cause daño al consumidor" },
   { palabra: "bpm", pista: "Conjunto de normas que aseguran la higiene y seguridad en el procesamiento de alimentos." },
@@ -21,10 +20,8 @@ let rondaActual = 0;
 
 function iniciarJuego() {
   if (rondaActual >= totalRondas) {
-    document.getElementById("mensaje").textContent = "¡Juego terminado! 🎉";
-    document.getElementById("pista").textContent = "";
-    document.getElementById("palabra").textContent = "";
-    document.getElementById("progreso").textContent = "";
+    document.getElementById("mensaje").textContent = "¡GANASTE ERES UN PRO DE LA INOCUIDAD!";
+    setTimeout(reiniciarJuego, 4000);
     return;
   }
 
@@ -40,7 +37,6 @@ function iniciarJuego() {
   intentos = 6;
   rondaActual++;
 
-  // Mostrar dos letras al azar
   const letrasUnicas = [...new Set(palabraActual.split(""))];
   const letrasReveladas = letrasUnicas.sort(() => 0.5 - Math.random()).slice(0, 2);
   letrasReveladas.forEach(letra => {
@@ -80,12 +76,18 @@ function manejarTecla(event) {
   document.getElementById("palabra").textContent = palabraOculta.join(" ");
 
   if (palabraOculta.join("") === palabraActual) {
-    document.getElementById("mensaje").textContent = "¡Muy bien! 🎉";
+    document.getElementById("mensaje").textContent = "¡Muy bien!";
     setTimeout(iniciarJuego, 2000);
   } else if (intentos === 0) {
-    document.getElementById("mensaje").textContent = `Perdiste 😢. La palabra era: ${palabraActual}`;
-    setTimeout(iniciarJuego, 3000);
+    document.getElementById("mensaje").textContent = `Perdiste. La palabra era: ${palabraActual}`;
+    setTimeout(reiniciarJuego, 4000);
   }
+}
+
+function reiniciarJuego() {
+  palabrasUsadas = [];
+  rondaActual = 0;
+  iniciarJuego();
 }
 
 function dibujarAhorcado() {
