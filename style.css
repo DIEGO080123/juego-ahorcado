@@ -1,12 +1,50 @@
 
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #f4f4f4;
-  padding: 20px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
+  background-color: #f0f8ff;
+  padding: 20px;
+}
+
+h1 {
+  color: #ff6347;
 }
 
 #palabra {
-  font-size: 2em;
-  letter-spacing: 10px;
+  font-size: 2em;
+  letter-spacing: 10px;
+  color: #4682b4;
+}
+
+#pista {
+  font-size: 1.2em;
+  color: #2e8b57;
+}
+
+#mensaje {
+  font-size: 1.5em;
+  color: #ff4500;
+}
+
+input[type="text"] {
+  font-size: 1.2em;
+  padding: 5px;
+}
+
+button {
+  font-size: 1.2em;
+  padding: 5px 10px;
+  background-color: #32cd32;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #228b22;
+}
+
+canvas {
+  margin-top: 20px;
+  border: 1px solid #000;
 }
