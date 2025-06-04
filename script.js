@@ -16,10 +16,16 @@ let pistaActual = "";
 let palabraOculta = [];
 let intentos = 6;
 let palabrasUsadas = [];
+let totalRondas = 6;
+let rondaActual = 0;
 
 function iniciarJuego() {
-  if (palabrasUsadas.length === palabras.length) {
-    palabrasUsadas = [];
+  if (rondaActual >= totalRondas) {
+    document.getElementById("mensaje").textContent = "¡Juego terminado! 🎉";
+    document.getElementById("pista").textContent = "";
+    document.getElementById("palabra").textContent = "";
+    document.getElementById("progreso").textContent = "";
+    return;
   }
 
   let indice;
@@ -32,24 +38,30 @@ function iniciarJuego() {
   pistaActual = palabras[indice].pista;
   palabraOculta = Array(palabraActual.length).fill("_");
   intentos = 6;
+  rondaActual++;
 
+  // Mostrar dos letras al azar
+  const letrasUnicas = [...new Set(palabraActual.split(""))];
+  const letrasReveladas = letrasUnicas.sort(() => 0.5 - Math.random()).slice(0, 2);
+  letrasReveladas.forEach(letra => {
+    for (let i = 0; i < palabraActual.length; i++) {
+      if (palabraActual[i] === letra) {
+        palabraOculta[i] = letra;
+      }
+    }
+  });
+
+  document.getElementById("progreso").textContent = `Palabra ${rondaActual} de ${totalRondas}`;
   document.getElementById("pista").textContent = `Pista: ${pistaActual}`;
   document.getElementById("palabra").textContent = palabraOculta.join(" ");
   document.getElementById("intentos").textContent = intentos;
   document.getElementById("mensaje").textContent = "";
-  document.getElementById("letra").value = "";
   dibujarAhorcado();
 }
 
-function adivinarLetra() {
-  const letraInput = document.getElementById("letra");
-  const letra = letraInput.value.toLowerCase();
-  letraInput.value = "";
-
-  if (!letra || letra.length !== 1 || !/[a-zñ]/.test(letra)) {
-    document.getElementById("mensaje").textContent = "Ingresa una letra válida.";
-    return;
-  }
+function manejarTecla(event) {
+  const letra = event.key.toLowerCase();
+  if (!/^[a-zñ]$/.test(letra)) return;
 
   let acierto = false;
   for (let i = 0; i < palabraActual.length; i++) {
@@ -68,7 +80,7 @@ function adivinarLetra() {
   document.getElementById("palabra").textContent = palabraOculta.join(" ");
 
   if (palabraOculta.join("") === palabraActual) {
-    document.getElementById("mensaje").textContent = "¡Ganaste! 🎉";
+    document.getElementById("mensaje").textContent = "¡Muy bien! 🎉";
     setTimeout(iniciarJuego, 2000);
   } else if (intentos === 0) {
     document.getElementById("mensaje").textContent = `Perdiste 😢. La palabra era: ${palabraActual}`;
@@ -86,58 +98,61 @@ function dibujarAhorcado() {
 
   if (intentos <= 5) {
     ctx.beginPath();
-    ctx.moveTo(10, 190);
-    ctx.lineTo(190, 190);
+    ctx.moveTo(10, 290);
+    ctx.lineTo(290, 290);
     ctx.stroke();
   }
 
   if (intentos <= 4) {
     ctx.beginPath();
-    ctx.moveTo(50, 190);
-    ctx.lineTo(50, 10);
+    ctx.moveTo(50, 290);
+    ctx.lineTo(50, 20);
     ctx.stroke();
   }
 
   if (intentos <= 3) {
     ctx.beginPath();
-    ctx.moveTo(50, 10);
-    ctx.lineTo(150, 10);
+    ctx.moveTo(50, 20);
+    ctx.lineTo(200, 20);
     ctx.stroke();
   }
 
   if (intentos <= 2) {
     ctx.beginPath();
-    ctx.moveTo(150, 10);
-    ctx.lineTo(150, 30);
+    ctx.moveTo(200, 20);
+    ctx.lineTo(200, 50);
     ctx.stroke();
   }
 
   if (intentos <= 1) {
     ctx.beginPath();
-    ctx.arc(150, 50, 20, 0, Math.PI * 2, true);
+    ctx.arc(200, 70, 20, 0, Math.PI * 2, true);
     ctx.stroke();
   }
 
   if (intentos === 0) {
     ctx.beginPath();
-    ctx.moveTo(150, 70);
-    ctx.lineTo(150, 130);
+    ctx.moveTo(200, 90);
+    ctx.lineTo(200, 150);
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.moveTo(150, 90);
-    ctx.lineTo(130, 110);
-    ctx.moveTo(150, 90);
-    ctx.lineTo(170, 110);
+    ctx.moveTo(200, 110);
+    ctx.lineTo(180, 130);
+    ctx.moveTo(200, 110);
+    ctx.lineTo(220, 130);
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.moveTo(150, 130);
-    ctx.lineTo(130, 170);
-    ctx.moveTo(150, 130);
-    ctx.lineTo(170, 170);
+    ctx.moveTo(200, 150);
+    ctx.lineTo(180, 190);
+    ctx.moveTo(200, 150);
+    ctx.lineTo(220, 190);
     ctx.stroke();
   }
 }
 
-window.onload = iniciarJuego;
+window.onload = () => {
+  iniciarJuego();
+  document.addEventListener("keydown", manejarTecla);
+};
