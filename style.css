@@ -1,0 +1,12 @@
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+#palabra {
+  font-size: 2em;
+  letter-spacing: 10px;
+}
