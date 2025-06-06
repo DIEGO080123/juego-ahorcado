@@ -7,24 +7,30 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
+<header>
     <img src="logo_resized.jpg" alt="Sello Agroapoyo" class="logo">
     <h1>EL AHORCADO DE LA INOCUIDAD</h1>
   </header>
 
-  <main class="contenedor">
-    <section class="panel-juego">
+  <div class="contenedor">
+    <div class="panel-juego">
       <p id="progreso"></p>
       <p id="pista"></p>
       <p id="palabra"></p>
       <p>Intentos restantes: <span id="intentos">6</span></p>
       <p id="mensaje"></p>
-    </section>
-
-    <canvas id="ahorcado" width="300" height="300"></canvas>
-  </main>
-
+    </div>
+    <div class="canvas-wrapper">
+      <canvas id="ahorcado" width="300" height="300"></canvas>
+    </div>
+  </div>
   <script src="script.js"></script>
+
+
+
+
+
+  
 </body>
 </html>
 
