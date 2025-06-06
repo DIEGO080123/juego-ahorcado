@@ -1,6 +1,6 @@
 
 const palabras = [
-  { palabra: "inocuidad", pista: "Condición que garantiza que un alimento no cause daño al consumidor" },
+  { palabra: "inocuidad", pista: "Condición que garantiza que un alimento consumido no cause daño al consumidor " },
   { palabra: "bpm", pista: "Conjunto de normas que aseguran la higiene y seguridad en el procesamiento de alimentos." },
   { palabra: "limpieza", pista: "Primer paso clave para evitar la contaminación de alimentos en casa o en la industria." },
   { palabra: "contaminacion", pista: "Presencia de agentes dañinos en alimentos, como bacterias o productos químicos." },
