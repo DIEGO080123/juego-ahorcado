@@ -7,8 +7,8 @@ const palabras = [
   { palabra: "desinfeccion", pista: "Proceso que elimina microorganismos patógenos de superficies de contacto con alimentos." },
   { palabra: "trazabilidad", pista: "Capacidad para seguir el recorrido de un alimento desde su origen hasta el consumidor." },
   { palabra: "alergenos", pista: "Sustancias en alimentos que pueden causar reacciones adversas en personas sensibles." },
-  { palabra: "etiquetado", pista: "Permite al consumidor saber si el producto tiene exceso de grasa, azúcar o sal." },
-  { palabra: "cruzada", pista: "Tipo de contaminación que ocurre cuando se mezclan alimentos crudos con cocidos." }
+  { palabra: "etiquetado", pista: "Es la información escrita, impresa o gráfica que aparece en el envase de un producto alimenticio" },
+  { palabra: "cruzada", pista: "Tipo de contaminación que ocurre cuando se mezclan o cruzan alimentos crudos con cocidos." }
 ];
 
 let palabraActual = "";
