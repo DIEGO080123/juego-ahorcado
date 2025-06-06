@@ -1,3 +1,4 @@
+
 const palabras = [
   { palabra: "inocuidad", pista: "Condición que garantiza que un alimento no cause daño al consumidor" },
   { palabra: "bpm", pista: "Conjunto de normas que aseguran la higiene y seguridad en el procesamiento de alimentos." },
@@ -49,8 +50,8 @@ function iniciarJuego() {
 
   document.getElementById("progreso").textContent = `Palabra ${rondaActual} de ${totalRondas}`;
   document.getElementById("pista").textContent = `Pista: ${pistaActual}`;
-  mostrarPalabraColorida();
- document.getElementById("intentos").textContent = intentos;
+  mostrarPalabra();
+  document.getElementById("intentos").textContent = intentos;
   document.getElementById("mensaje").textContent = "";
   dibujarAhorcado();
 }
@@ -73,8 +74,7 @@ function manejarTecla(event) {
     dibujarAhorcado();
   }
 
- 
-mostrarPalabraColorida();
+  mostrarPalabra();
 
   if (palabraOculta.join("") === palabraActual) {
     document.getElementById("mensaje").textContent = "¡Muy bien!";
@@ -95,7 +95,6 @@ function dibujarAhorcado() {
   const canvas = document.getElementById("ahorcado");
   const ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
   ctx.strokeStyle = "#000";
   ctx.lineWidth = 2;
 
@@ -105,34 +104,29 @@ function dibujarAhorcado() {
     ctx.lineTo(290, 290);
     ctx.stroke();
   }
-
   if (intentos <= 4) {
     ctx.beginPath();
     ctx.moveTo(50, 290);
     ctx.lineTo(50, 20);
     ctx.stroke();
   }
-
   if (intentos <= 3) {
     ctx.beginPath();
     ctx.moveTo(50, 20);
     ctx.lineTo(200, 20);
     ctx.stroke();
   }
-
   if (intentos <= 2) {
     ctx.beginPath();
     ctx.moveTo(200, 20);
     ctx.lineTo(200, 50);
     ctx.stroke();
   }
-
   if (intentos <= 1) {
     ctx.beginPath();
     ctx.arc(200, 70, 20, 0, Math.PI * 2, true);
     ctx.stroke();
   }
-
   if (intentos === 0) {
     ctx.beginPath();
     ctx.moveTo(200, 90);
@@ -155,14 +149,7 @@ function dibujarAhorcado() {
   }
 }
 
-window.onload = () => {
-  iniciarJuego();
-  document.addEventListener("keydown", manejarTecla);
-};
-
-
-
-function mostrarPalabraColorida() {
+function mostrarPalabra() {
   const contenedor = document.getElementById("palabra");
   contenedor.innerHTML = "";
   palabraOculta.forEach((letra) => {
@@ -172,16 +159,7 @@ function mostrarPalabraColorida() {
   });
 }
 
-
-  palabraOculta.forEach((letra, i) => {
-    const span = document.createElement("span");
-    span.textContent = letra.toUpperCase();
-    span.style.backgroundColor = colores[i % colores.length];
-    contenedor.appendChild(span);
-  });
-}
-
-
-
-
-
+window.onload = () => {
+  iniciarJuego();
+  document.addEventListener("keydown", manejarTecla);
+};
