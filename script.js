@@ -49,8 +49,8 @@ function iniciarJuego() {
 
   document.getElementById("progreso").textContent = `Palabra ${rondaActual} de ${totalRondas}`;
   document.getElementById("pista").textContent = `Pista: ${pistaActual}`;
-  document.getElementById("palabra").textContent = palabraOculta.join(" ");
-  document.getElementById("intentos").textContent = intentos;
+  mostrarPalabraColorida();
+ document.getElementById("intentos").textContent = intentos;
   document.getElementById("mensaje").textContent = "";
   dibujarAhorcado();
 }
@@ -73,7 +73,8 @@ function manejarTecla(event) {
     dibujarAhorcado();
   }
 
-  document.getElementById("palabra").textContent = palabraOculta.join(" ");
+ 
+mostrarPalabraColorida();
 
   if (palabraOculta.join("") === palabraActual) {
     document.getElementById("mensaje").textContent = "¡Muy bien!";
